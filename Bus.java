@@ -19,11 +19,13 @@ public class Bus extends Vehicle implements PublicTransit {
 
     @Override
     public void boardPassengers(ArrayList<Passenger> newPassengers) {
-        for (Passenger p : passengers) {
-            p.travel(milesDriven);
-        }
         passengers.addAll(newPassengers);
         System.out.println(newPassengers.size() + " passengers boarded the bus.");
+        double fare = 0;
+        for (Passenger p : newPassengers) {
+            fare = calculateFare(p);
+            p.payFare(fare);
+        }
     }
 
     @Override

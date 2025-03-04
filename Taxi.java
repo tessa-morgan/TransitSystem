@@ -17,6 +17,7 @@ public class Taxi extends Car implements PublicTransit {
     public void drive(int distance) {
         for (Passenger p : passengers) {
             p.travel(distance);
+            p.payFare(distance);
         }
         System.out.println(driver + ", who is " + driver.getAge() + ", is driving a taxi with " + passengers.size() + " passengers.");
     }
