@@ -7,9 +7,15 @@ public class Car extends Vehicle {
         this.doors = doors;
     }
 
+    public Car(String make, String model, int year, int doors, Passenger driver, int milesDriven) {
+        super(make, model, year, driver, milesDriven);
+        this.doors = doors;
+    }
+
     @Override
-    public void drive() { 
-        System.out.println(driver + ", who is " + driver.getAge() + ", is driving.");
+    public void drive(int distance) { 
+        driver.travel(distance);
+        System.out.println(driver + ", who is " + driver.getAge() + ", drove " + distance + " miles.");
     }
 
     public int getDoors() { return doors; }
