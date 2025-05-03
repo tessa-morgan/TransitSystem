@@ -1,5 +1,15 @@
 import java.util.ArrayList;
 
+/**
+ * Main entry point for the transit system application.
+ *
+ * This class is part of the transit system simulation.
+ */
+
+import vehicle.Bus;
+import vehicle.Taxi;
+import core.Passenger;
+
 public class Main {
     public static void main(String[] args) {
         Passenger alice = new Passenger("Alice", 25);

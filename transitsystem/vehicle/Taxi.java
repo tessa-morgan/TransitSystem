@@ -1,6 +1,20 @@
+package vehicle;
+
+/**
+ * Represents a Taxi which is a type of public transit vehicle.
+ *
+ * This class is part of the transit system simulation.
+ */
 import java.util.ArrayList;
 
-public class Taxi extends Car implements PublicTransit {
+import core.Passenger;
+import core.IPublicTransit;
+
+public class Taxi extends Car implements IPublicTransit {
+    
+    /**
+     * A list of Passengers currently in the taxi 
+     */
     private ArrayList<Passenger> passengers;
 
     public Taxi(String make, String model, int year, int doors, Passenger driver) {
@@ -14,6 +28,13 @@ public class Taxi extends Car implements PublicTransit {
     }
 
     @Override
+    /**
+     * drive method.
+     * @param distance The distance in miles traveled
+     *
+     * Updates the distance traveled by the taxi and charges each passenger based on the input.
+     * Prints a response in the form 'Jane, who is 32, is driving a taxi with 3 passengers.'
+     */
     public void drive(int distance) {
         for (Passenger p : passengers) {
             p.travel(distance);
@@ -23,13 +44,18 @@ public class Taxi extends Car implements PublicTransit {
     }
 
     @Override
+    /**
+     * boardPassengers method.
+     * @param newPassengers List of passengers boarding the taxi
+     *
+     * Adds each passenger in newPassengers to the Taxi.
+     */
     public void boardPassengers(ArrayList<Passenger> newPassengers) {
         // Adds passengers to the taxi
         passengers.addAll(newPassengers);
         int num = newPassengers.size();
 
         for (Passenger p : passengers) {
-            p.travel(milesDriven);
             
             if (num > 1) {
                 System.out.print(p.getName() + ", ");
@@ -42,6 +68,12 @@ public class Taxi extends Car implements PublicTransit {
     }
 
     @Override
+    /**
+     * disembarkPassengers method.
+     * @param leavingPassengers
+     *
+     * Removes passengers in leavingPassengers from the taxi
+     */
     public void disembarkPassengers(ArrayList<Passenger> leavingPassengers) {
         passengers.removeAll(leavingPassengers);
         for (Passenger p : passengers) {
@@ -51,7 +83,14 @@ public class Taxi extends Car implements PublicTransit {
     }
 
     @Override
+    /**
+     * calculateFare method.
+     * @param p The passenger object 
+     * @return fare 
+     *
+     * Calculates the fare for the passenger p based on the distance traveled.
+     */
     public double calculateFare(Passenger p) {
-        return p.getDistance() * 1.5 + 3; // Formula for taxi fare, yikes
+        return p.getDistance() * 1.5 + 3; 
     }
 }

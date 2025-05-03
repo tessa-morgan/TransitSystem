@@ -1,6 +1,21 @@
+package vehicle;
+
+/**
+ * Represents a Bus which is a public transit vehicle.
+ *
+ * This class is part of the transit system simulation.
+ */
 import java.util.ArrayList;
 
-public class Bus extends Vehicle implements PublicTransit {
+import core.Passenger;
+import core.Vehicle;
+import core.IPublicTransit;
+
+public class Bus extends Vehicle implements IPublicTransit {
+    
+    /**
+     * List of all Passengers currently on the bus
+     */
     private ArrayList<Passenger> passengers;
 
     public Bus(String make, String model, int year, Passenger driver) {
@@ -9,6 +24,13 @@ public class Bus extends Vehicle implements PublicTransit {
     }
 
     @Override
+    /**
+     * drive method.
+     * @param distance The distance in miles traveled
+     *
+     * Updates the distance traveled by the bus object based on the input distance.
+     * Prints a response in the form 'Jane, who is 32, is driving a bus with 3 passengers.'
+     */
     public void drive(int distance) {
         for (Passenger p : passengers) {
             p.travel(distance);
@@ -18,6 +40,12 @@ public class Bus extends Vehicle implements PublicTransit {
     }
 
     @Override
+    /**
+     * boardPassengers method.
+     * @param newPassengers
+     *
+     * Adds each passenger in newPassengers to the Bus and charges them fare.
+     */
     public void boardPassengers(ArrayList<Passenger> newPassengers) {
         passengers.addAll(newPassengers);
         System.out.println(newPassengers.size() + " passengers boarded the bus.");
@@ -29,6 +57,12 @@ public class Bus extends Vehicle implements PublicTransit {
     }
 
     @Override
+    /**
+     * disembarkPassengers method.
+     * @param leavingPassengers
+     *
+     * Removes each passenger in leavingPassengers from the Bus and prints confirmation.
+     */
     public void disembarkPassengers(ArrayList<Passenger> leavingPassengers) {
         for (Passenger p : passengers) {
             p.disembark();
@@ -38,6 +72,13 @@ public class Bus extends Vehicle implements PublicTransit {
     }
 
     @Override
+    /**
+     * calculateFare method.
+     * @param p The passenger object 
+     * @return fare 
+     *
+     * Calculates the fare for the passenger p based on their age.
+     */
     public double calculateFare(Passenger p) {
         double fare;
         if (p.getAge() < 18) {
